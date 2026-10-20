@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="600" viewBox="0 0 1800 600" role="img" aria-labelledby="title desc">
+  <title id="title">Lenvy horizontal logo lockup</title>
+  <desc id="desc">Evergreen geometric L with a mint data point, ink serif wordmark, and the tagline Every number has a purpose. on parchment.</desc>
+  <rect width="1800" height="600" fill="#F4F2EE"/>
+  <!-- Mark: one geometric L and one data point. -->
+  <g id="lenvy-mark" transform="translate(329 150)">
+    <path d="M3 0H37Q40 0 40 3V157Q40 160 43 160H173Q176 160 176 163V197Q176 200 173 200H3Q0 200 0 197V3Q0 0 3 0Z" fill="#1E4D3B"/>
+    <circle cx="214" cy="180" r="26" fill="#7CD3A0"/>
+  </g>
+  <!-- Wordmark cap height aligns to the L's vertical stem. -->
+  <text x="609" y="350" fill="#0A0D12" font-family="Noto Serif Display, Georgia, serif" font-size="280" font-weight="600" letter-spacing="-2">Lenvy</text>
+  <!-- Neutral grotesque tagline with quiet, measured tracking. -->
+  <text x="1040" y="445" fill="#0A0D12" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="400" letter-spacing="3.2">Every number has a purpose.</text>
+</svg>

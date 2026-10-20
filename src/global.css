@@ -1,9 +1,69 @@
+/**
+ * Lenvy design tokens as CSS variables — mirrors `src/theme/semantic.ts` so
+ * NativeWind class-based styling can consume the same palette on web and in
+ * `className` props without going through JS. Keep both files in sync.
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  --font-display:
-    Spline Sans, Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji,
-    Segoe UI Symbol, Noto Color Emoji;
-  --font-mono:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
-  --font-rounded: 'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif;
-  --font-serif: Georgia, 'Times New Roman', serif;
+  /* Fonts (kept aliases for backward compatibility with the template) */
+  --font-display: Fraunces, ui-serif, Georgia, serif;
+  --font-serif: Fraunces, ui-serif, Georgia, serif;
+  --font-rounded: Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+
+  /* Semantic colors — light scheme defaults */
+  --color-canvas: #f4f2ee;
+  --color-surface: #fbfaf7;
+  --color-surface-raised: #ffffff;
+  --color-surface-sunken: #eae6de;
+  --color-overlay: rgba(10, 13, 18, 0.48);
+
+  --color-ink: #0a0d12;
+  --color-ink-muted: #5b6572;
+  --color-ink-subtle: #8a94a2;
+  --color-ink-inverse: #fbfaf7;
+
+  --color-hairline: rgba(10, 13, 18, 0.09);
+  --color-hairline-strong: rgba(10, 13, 18, 0.16);
+
+  --color-accent: #1e4d3b;
+  --color-accent-soft: #d7e7dc;
+  --color-accent-ink: #0f2a20;
+
+  --color-positive: #3f8f5a;
+  --color-negative: #b8452f;
+  --color-caution: #c58a1f;
+  --color-info: #2d5a8a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-canvas: #0a0d12;
+    --color-surface: #11151c;
+    --color-surface-raised: #171c25;
+    --color-surface-sunken: #06080c;
+    --color-overlay: rgba(0, 0, 0, 0.62);
+
+    --color-ink: #f4f2ee;
+    --color-ink-muted: #96a0ae;
+    --color-ink-subtle: #6a7380;
+    --color-ink-inverse: #0a0d12;
+
+    --color-hairline: rgba(244, 242, 238, 0.08);
+    --color-hairline-strong: rgba(244, 242, 238, 0.14);
+
+    --color-accent: #7cd3a0;
+    --color-accent-soft: #143825;
+    --color-accent-ink: #0a0d12;
+
+    --color-positive: #6bd08c;
+    --color-negative: #e67a5c;
+    --color-caution: #e6b455;
+    --color-info: #79abd9;
+  }
 }
