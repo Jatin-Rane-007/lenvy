@@ -1,56 +1,23 @@
-import { SymbolView } from 'expo-symbols';
-import { Tabs } from 'expo-router';
+import { Tabs } from "expo-router";
 
-import { useTheme } from '@/theme';
+import { LenvyTabBar } from "@components/tab-bar";
 
+/**
+ * Five-tab bottom bar — locked by DESIGN.md "Navigation shape". Rendered by
+ * our own LenvyTabBar: morphing accent pill on spring.gentle, SF Symbols on
+ * iOS / Lucide on Android+Web, and the Add tab as a floating accent FAB.
+ */
 export default function TabLayout() {
-  const t = useTheme();
-
   return (
     <Tabs
-      screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: t.colors.accent,
-        tabBarInactiveTintColor: t.colors.inkSubtle,
-        tabBarStyle: {
-          backgroundColor: t.colors.surface,
-          borderTopColor: t.colors.hairline,
-        },
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <SymbolView
-              name={{
-                ios: focused ? 'house.fill' : 'house',
-                android: 'home',
-                web: 'home',
-              }}
-              tintColor={color}
-              size={24}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <SymbolView
-              name={{
-                ios: focused ? 'safari.fill' : 'safari',
-                android: 'explore',
-                web: 'explore',
-              }}
-              tintColor={color}
-              size={24}
-            />
-          ),
-        }}
-      />
+      tabBar={(props) => <LenvyTabBar {...props} />}
+      screenOptions={{ headerShown: false }}
+    >
+      <Tabs.Screen name="index" options={{ title: "Home" }} />
+      <Tabs.Screen name="transactions" options={{ title: "Transactions" }} />
+      <Tabs.Screen name="add" options={{ title: "Add" }} />
+      <Tabs.Screen name="assistant" options={{ title: "Assistant" }} />
+      <Tabs.Screen name="profile" options={{ title: "Profile" }} />
     </Tabs>
   );
 }
