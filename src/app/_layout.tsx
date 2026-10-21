@@ -1,7 +1,7 @@
 import '@/global.css';
 import { ClerkProvider } from '@clerk/expo';
 import { tokenCache } from '@clerk/expo/token-cache';
-import { DarkTheme, DefaultTheme, Slot, ThemeProvider } from 'expo-router';
+import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useColorScheme } from 'react-native';
@@ -19,10 +19,6 @@ if (!publishableKey) {
 }
 
 SplashScreen.preventAutoHideAsync();
-
-export const unstable_settings = {
-  anchor: '(root)',
-};
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -43,7 +39,7 @@ export default function RootLayout() {
             {fontsLoaded ? (
               <>
                 <AnimatedSplashOverlay />
-                <Slot />
+                <Stack screenOptions={{ headerShown: false }} />
               </>
             ) : null}
           </ThemeProvider>

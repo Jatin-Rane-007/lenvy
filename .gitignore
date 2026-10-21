@@ -54,3 +54,9 @@ example
 .impeccable/
 .github/hooks/
 AGENTS.md
+.agents/
+agent/
+skills-lock.json
+
+# Logs
+*.log
