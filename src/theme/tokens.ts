@@ -115,13 +115,13 @@ export const typography = {
   displayXl: {
     fontFamily: fontFamilies.fraunces,
     fontSize: 56,
-    lineHeight: 60,
+    lineHeight: 68,
     letterSpacing: -1,
   },
   displayL: {
     fontFamily: fontFamilies.fraunces,
     fontSize: 40,
-    lineHeight: 44,
+    lineHeight: 52,
     letterSpacing: -0.5,
   },
   heading: {

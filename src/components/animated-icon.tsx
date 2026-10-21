@@ -1,7 +1,7 @@
 import { Image } from 'expo-image';
 import * as SplashScreen from 'expo-splash-screen';
 import { useState } from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, useColorScheme, View } from 'react-native';
 import Animated, { Easing, Keyframe } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 
@@ -11,8 +11,16 @@ const DURATION = 600;
 export function AnimatedSplashOverlay() {
   const [animate, setAnimate] = useState(false);
   const [visible, setVisible] = useState(true);
+  const scheme = useColorScheme();
 
   if (!visible) return null;
+
+  // Mirror the native splash config (app.json) so the handoff is seamless:
+  // evergreen in light, deep slate in dark.
+  const overlayStyle = [
+    styles.splashOverlay,
+    { backgroundColor: scheme === 'dark' ? '#0A0D12' : '#1E4D3B' },
+  ];
 
   const splashKeyframe = new Keyframe({
     0: {
@@ -33,7 +41,13 @@ export function AnimatedSplashOverlay() {
     },
   });
 
-  const image = <Image style={styles.image} source={require('@/assets/images/expo-logo.png')} />;
+  const image = (
+    <Image
+      style={styles.splashImage}
+      contentFit="contain"
+      source={require('@/assets/lenvy-brand-assets/png/lenvy-mark-on-dark.png')}
+    />
+  );
 
   return animate ? (
     <Animated.View
@@ -43,7 +57,7 @@ export function AnimatedSplashOverlay() {
           scheduleOnRN(setVisible, false);
         }
       })}
-      style={styles.splashOverlay}>
+      style={overlayStyle}>
       {image}
     </Animated.View>
   ) : (
@@ -53,7 +67,7 @@ export function AnimatedSplashOverlay() {
           setAnimate(true);
         });
       }}
-      style={styles.splashOverlay}>
+      style={overlayStyle}>
       {image}
     </View>
   );
@@ -131,6 +145,10 @@ const styles = StyleSheet.create({
     width: 76,
     height: 71,
   },
+  splashImage: {
+    width: 88,
+    height: 117,
+  },
   background: {
     borderRadius: 40,
     experimental_backgroundImage: `linear-gradient(180deg, #3C9FFE, #0274DF)`,
@@ -140,7 +158,7 @@ const styles = StyleSheet.create({
   },
   splashOverlay: {
     ...StyleSheet.absoluteFill,
-    backgroundColor: '#208AEF',
+    backgroundColor: '#1E4D3B',
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 1000,

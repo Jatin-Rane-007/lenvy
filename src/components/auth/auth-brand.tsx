@@ -5,8 +5,9 @@ import { Text } from "@components/primitives";
 import { useTheme } from "@/theme";
 
 /**
- * Lenvy wordmark + tagline shown atop the auth screens. Uses the new brand
- * assets (replacing the old Expo iconography) and swaps logo art per scheme.
+ * Lenvy wordmark + tagline shown atop the auth and onboarding screens. Uses
+ * the brand kit mark and swaps art per scheme (ink mark on light, light mark
+ * on dark).
  */
 export function AuthBrand({
   title,
@@ -18,14 +19,14 @@ export function AuthBrand({
   const t = useTheme();
   const logo =
     t.scheme === "dark"
-      ? require("@/assets/images/lenvy_app_logo_dark.png")
-      : require("@/assets/images/lenvy_app_logo_light.png");
+      ? require("@/assets/lenvy-brand-assets/png/lenvy-mark-on-dark.png")
+      : require("@/assets/lenvy-brand-assets/png/lenvy-mark.png");
 
   return (
     <View className="items-center gap-4">
       <Image
         source={logo}
-        style={{ width: 72, height: 72 }}
+        style={{ width: 66, height: 88 }}
         contentFit="contain"
         accessibilityLabel="Lenvy"
       />

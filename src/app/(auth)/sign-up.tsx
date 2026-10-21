@@ -87,42 +87,24 @@ export default function SignUpScreen() {
 
   const onVerify = codeForm.handleSubmit(async ({ code }) => {
     setAuthError(null);
-    console.log("[sign-up] verifyEmailCode submitting", { code: code.trim() });
     const { error } = await signUp.verifications.verifyEmailCode({
       code: code.trim(),
-    });
-    console.log("[sign-up] verifyEmailCode response", {
-      error: error?.message,
-      errorCode: error?.code,
-      errorFull: error,
-      signUpStatus: signUp.status,
-      unverifiedFields: signUp.unverifiedFields,
-      missingFields: signUp.missingFields,
     });
     // A code consumed on a previous tap means the email is already verified —
     // don't trap the user on this step, fall through and finish the flow.
     if (error && error.code !== "verification_already_verified") {
-      console.log("[sign-up] aborting: real verification error");
       return;
     }
 
     if (signUp.status === "complete") {
-      console.log("[sign-up] status complete → calling finalize()");
       // The (auth) layout guard redirects home once the session is active.
       const { error: finalizeError } = await signUp.finalize();
-      console.log("[sign-up] finalize() response", {
-        finalizeError: finalizeError?.message,
-        finalizeErrorCode: finalizeError?.code,
-        finalizeErrorFull: finalizeError,
-      });
       if (finalizeError) {
         setAuthError(
           finalizeError.message ??
             "Could not start your session. Please try again.",
         );
       }
-    } else {
-      console.log("[sign-up] NOT finalizing — status is", signUp.status);
     }
   });
 

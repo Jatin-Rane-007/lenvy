@@ -4,7 +4,7 @@
     "slug": "lenvy",
     "version": "0.1.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/lenvy-brand-assets/png/icon-expo-1024.png",
     "scheme": "lenvy",
     "userInterfaceStyle": "automatic",
     "backgroundColor": "#F4F2EE",
@@ -16,16 +16,16 @@
       "package": "app.lenvy.mobile",
       "adaptiveIcon": {
         "backgroundColor": "#1E4D3B",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "foregroundImage": "./assets/lenvy-brand-assets/png/android-adaptive-foreground.png",
+        "backgroundImage": "./assets/lenvy-brand-assets/png/android-adaptive-background.png",
+        "monochromeImage": "./assets/lenvy-brand-assets/png/android-monochrome.png"
       },
       "predictiveBackGestureEnabled": false
     },
     "web": {
       "bundler": "metro",
       "output": "server",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/lenvy-brand-assets/png/favicon-48.png"
     },
     "plugins": [
       "expo-router",
@@ -33,8 +33,8 @@
         "expo-splash-screen",
         {
           "backgroundColor": "#1E4D3B",
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76,
+          "image": "./assets/lenvy-brand-assets/png/splash-icon.png",
+          "imageWidth": 96,
           "dark": {
             "backgroundColor": "#0A0D12"
           }

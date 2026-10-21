@@ -822,7 +822,7 @@
   dependencies:
     node-forge "^1.4.0"
 
-"@expo/config-plugins@~58.0.9":
+"@expo/config-plugins@^58.0.9", "@expo/config-plugins@~58.0.9":
   version "58.0.9"
   resolved "https://registry.npmjs.org/@expo/config-plugins/-/config-plugins-58.0.9.tgz"
   integrity sha512-HyP7V1QgDxeHcOEh4qQH7cfK7cI7wNp0y9lszAu98SRYCshhDbwB9gWpFfnpX1GQUtgiqG4Hvgh1z3ntcGwAjw==
@@ -1656,10 +1656,17 @@
   dependencies:
     tslib "^2.8.0"
 
-"@tanstack/query-core@^5.101.4":
-  version "5.104.4"
-  resolved "https://registry.npmjs.org/@tanstack/query-core/-/query-core-5.104.4.tgz"
-  integrity sha512-nU4Yrb8Sjn0DeVb7PKG9uiepNavys3yoxy1FX0hViY4/P6Ng/mBje2SMl7i9812rtyHKtHyqiaC/td6GkI8StA==
+"@tanstack/query-core@^5.101.4", "@tanstack/query-core@5.104.5":
+  version "5.104.5"
+  resolved "https://registry.npmjs.org/@tanstack/query-core/-/query-core-5.104.5.tgz"
+  integrity sha512-Q94gI8Opd+CbdVNOdj8ZCyV8WqLYitrDq1t96Xc8WZT6lY0r5iRnJLXYDxMex7EEf2v+mXvn4FcjaBKSxXZQ9A==
+
+"@tanstack/react-query@^5.104.5":
+  version "5.104.5"
+  resolved "https://registry.npmjs.org/@tanstack/react-query/-/react-query-5.104.5.tgz"
+  integrity sha512-RORgFe052U+93weaNuqg7qHq7vNVNzXN/VrXqD4bbAuQCWUqOl2lV5Ui9flWk5CVvMyL/Bh27QWhzwH0aaOx9g==
+  dependencies:
+    "@tanstack/query-core" "5.104.5"
 
 "@types/estree@^1.0.6":
   version "1.0.9"
@@ -3314,10 +3321,10 @@ expo-device@~58.0.5:
   dependencies:
     ua-parser-js "^0.7.33"
 
-expo-file-system@~58.0.9:
-  version "58.0.9"
-  resolved "https://registry.npmjs.org/expo-file-system/-/expo-file-system-58.0.9.tgz"
-  integrity sha512-JT0km3Wa+wDz/7Rli8ifreoMnmk68ulf/uaWzRA26xm/4K+jGTY+cDhnboRmpmXUCBkED6uqxWmNoXjaVU9VUw==
+expo-file-system@~58.0.10, expo-file-system@~58.0.9:
+  version "58.0.10"
+  resolved "https://registry.npmjs.org/expo-file-system/-/expo-file-system-58.0.10.tgz"
+  integrity sha512-n0M7amp/Bv9TAqVfTWq1zGykmQJWiPzDePZIKp8YYKkVvY7N65bo96sMBQlHkhAyW4I1B6MZABnybliy5DXQig==
 
 expo-font@~58.0.8:
   version "58.0.8"
@@ -3328,6 +3335,11 @@ expo-glass-effect@^58.0.4, expo-glass-effect@~58.0.4:
   version "58.0.4"
   resolved "https://registry.npmjs.org/expo-glass-effect/-/expo-glass-effect-58.0.4.tgz"
   integrity sha512-PrxU1FINOpqpnjtZMXHAC/APLq3T3fDforMqQ+JRqRtIrlQ8wntrX8IztLxJBKD9s8cJJ8V9MAoI89aYRK8j9Q==
+
+expo-haptics@~58.0.7:
+  version "58.0.7"
+  resolved "https://registry.npmjs.org/expo-haptics/-/expo-haptics-58.0.7.tgz"
+  integrity sha512-mAY3rbng6EuYysq9wnJKhKwYYlDjqnPYcS5OXe3zj4TlAaOFMl/EfiSOuAMawc2nsXCAnwJ5U0E11nq5zQO0mg==
 
 expo-image@~58.0.15:
   version "58.0.15"
@@ -3415,6 +3427,15 @@ expo-server@^58.0.5:
   version "58.0.5"
   resolved "https://registry.npmjs.org/expo-server/-/expo-server-58.0.5.tgz"
   integrity sha512-FHYecxfGOuAhacHcanR6qCN8Cln9S+FFulcYetLu3ddDg55ohuCsMZ9U4Egzwdm+A2o6N+MdSoJKquBC5F9NIg==
+
+expo-sharing@^58.0.19:
+  version "58.0.19"
+  resolved "https://registry.npmjs.org/expo-sharing/-/expo-sharing-58.0.19.tgz"
+  integrity sha512-FzTUT7uquCBbWVwjYm1fogpO3UNBoj+XRCNrCv7GzRNy9f0KPzLZTnaqJw28nEvaesYg/Q9nAiwSwkH1Df/Bdg==
+  dependencies:
+    "@expo/config-plugins" "^58.0.9"
+    "@expo/config-types" "^58.0.3"
+    "@expo/plist" "^0.10.1"
 
 expo-splash-screen@~58.0.10:
   version "58.0.10"

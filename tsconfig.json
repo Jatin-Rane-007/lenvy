@@ -11,7 +11,8 @@
       "@hooks/*": ["./src/hooks/*"],
       "@lib/*": ["./src/lib/*"],
       "@screens/*": ["./src/screens/*"],
-      "@store/*": ["./src/store/*"]
+      "@store/*": ["./src/store/*"],
+      "@types/*": ["./src/types/*"]
     }
   },
   "include": [
