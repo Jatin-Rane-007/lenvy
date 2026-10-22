@@ -24,6 +24,9 @@
   ],
   "exclude": [
     // Loose reference screen from another project — not part of this app.
-    "add-transaction.tsx"
+    "add-transaction.tsx",
+    // Deno edge functions — typed and compiled by Supabase's own runtime,
+    // see supabase/functions/tsconfig.json.
+    "supabase"
   ]
 }
