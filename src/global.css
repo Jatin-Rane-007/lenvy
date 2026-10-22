@@ -2,6 +2,11 @@
  * Lenvy design tokens as CSS variables — mirrors `src/theme/semantic.ts` so
  * NativeWind class-based styling can consume the same palette on web and in
  * `className` props without going through JS. Keep both files in sync.
+ *
+ * The dark set is keyed off `html[data-theme='dark']`, not a
+ * `prefers-color-scheme` query: `ThemeProvider` writes the resolved scheme
+ * onto the root element, so an explicit Light/Dark pin in Profile wins over
+ * the OS the same way it does on native.
  */
 
 @tailwind base;
@@ -41,29 +46,27 @@
   --color-info: #2d5a8a;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-canvas: #0a0d12;
-    --color-surface: #11151c;
-    --color-surface-raised: #171c25;
-    --color-surface-sunken: #06080c;
-    --color-overlay: rgba(0, 0, 0, 0.62);
+:root[data-theme='dark'] {
+  --color-canvas: #0a0d12;
+  --color-surface: #11151c;
+  --color-surface-raised: #171c25;
+  --color-surface-sunken: #06080c;
+  --color-overlay: rgba(0, 0, 0, 0.62);
 
-    --color-ink: #f4f2ee;
-    --color-ink-muted: #96a0ae;
-    --color-ink-subtle: #6a7380;
-    --color-ink-inverse: #0a0d12;
+  --color-ink: #f4f2ee;
+  --color-ink-muted: #96a0ae;
+  --color-ink-subtle: #6a7380;
+  --color-ink-inverse: #0a0d12;
 
-    --color-hairline: rgba(244, 242, 238, 0.08);
-    --color-hairline-strong: rgba(244, 242, 238, 0.14);
+  --color-hairline: rgba(244, 242, 238, 0.08);
+  --color-hairline-strong: rgba(244, 242, 238, 0.14);
 
-    --color-accent: #7cd3a0;
-    --color-accent-soft: #143825;
-    --color-accent-ink: #0a0d12;
+  --color-accent: #7cd3a0;
+  --color-accent-soft: #143825;
+  --color-accent-ink: #0a0d12;
 
-    --color-positive: #6bd08c;
-    --color-negative: #e67a5c;
-    --color-caution: #e6b455;
-    --color-info: #79abd9;
-  }
+  --color-positive: #6bd08c;
+  --color-negative: #e67a5c;
+  --color-caution: #e6b455;
+  --color-info: #79abd9;
 }

@@ -1,7 +1,14 @@
-import { createContext, useContext, useMemo, type PropsWithChildren } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  type PropsWithChildren,
+} from 'react';
 import { useColorScheme } from 'react-native';
 
 import { elevationRecipes, type ElevationLevel } from './elevation';
+import { resolveScheme, type Scheme, type ThemePreference } from './preference';
 import { lightColors, darkColors, type ColorRole, type ColorTokens } from './semantic';
 import {
   categorySwatches,
@@ -14,10 +21,14 @@ import {
   type TypographyKey,
 } from './tokens';
 import { durations, springs, standardEasing } from './motion';
+import { applyWebScheme } from './webScheme';
 
-export type Scheme = 'light' | 'dark';
+export type { Scheme, ThemePreference };
 
 export interface ThemeValue {
+  /** What the user picked: `system`, or an explicit `light` / `dark` pin. */
+  preference: ThemePreference;
+  /** What that resolves to right now. Every visual decision reads this. */
   scheme: Scheme;
   colors: ColorTokens;
   spacing: typeof spacing;
@@ -38,15 +49,22 @@ const ThemeContext = createContext<ThemeValue | null>(null);
 
 export function ThemeProvider({
   children,
-  override,
-}: PropsWithChildren<{ override?: Scheme }>) {
+  preference = 'system',
+}: PropsWithChildren<{ preference?: ThemePreference }>) {
   const system = useColorScheme();
-  const scheme: Scheme = override ?? (system === 'dark' ? 'dark' : 'light');
+  const scheme = resolveScheme(preference, system);
+
+  // Web only: mirror the resolved scheme onto <html data-theme> so the CSS
+  // variables in global.css follow a pin, not just the OS.
+  useEffect(() => {
+    applyWebScheme(scheme);
+  }, [scheme]);
 
   const value = useMemo<ThemeValue>(() => {
     const colors = scheme === 'dark' ? darkColors : lightColors;
     const recipes = elevationRecipes[scheme];
     return {
+      preference,
       scheme,
       colors,
       spacing,
@@ -60,7 +78,7 @@ export function ThemeProvider({
         hairline: Boolean(recipes[level].hairline),
       }),
     };
-  }, [scheme]);
+  }, [preference, scheme]);
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }

@@ -8,7 +8,7 @@ import { useTheme } from "@/theme";
 import type { ColorRole } from "@/theme";
 import type { Account } from "@/types/account";
 import { Dip, Enter } from "@components/animated";
-import { PlatformIcon } from "@components/icons";
+import { PlatformIcon, type LucideIconName } from "@components/icons";
 import { Skeleton } from "@components/feedback/Skeleton";
 import {
   Avatar,
@@ -17,8 +17,10 @@ import {
   Divider,
   Screen,
   Text,
+  TintedGlyph,
 } from "@components/primitives";
 import { AccountFormSheet } from "@components/overlays/AccountFormSheet";
+import { AppearanceControl } from "@components/form/AppearanceControl";
 import { CurrencyPicker } from "@components/CurrencyPicker";
 import { ACCOUNT_TYPE_META } from "@constants/accountTypes";
 import type { Currency } from "@constants/currencies";
@@ -36,9 +38,9 @@ import { useUserStore } from "@store/userStore";
  * your photo); the card carries the live net across all accounts so "how am I
  * doing?" is answerable here too. Account rows open the editor on tap and a
  * manage menu on long-press (set default / delete). Below that: change the
- * ledger currency, and sign out as a grouped destructive row. Rows carry
- * tinted icon circles and dip on press, matching the capture rows on Add.
- * Anything not shipping stays honest with a "Soon" badge.
+ * ledger currency and appearance, and sign out as a grouped destructive row.
+ * Rows carry tinted icon circles and dip on press, matching the capture rows
+ * on Add. Anything not shipping stays honest with a "Soon" badge.
  */
 export default function ProfileScreen() {
   const t = useTheme();
@@ -340,7 +342,8 @@ export default function ProfileScreen() {
           </Box>
         </Enter>
 
-        {/* Preferences — currency is live; biometric is honest about shipping later */}
+        {/* Preferences — appearance and currency are live; biometric is honest
+            about shipping later */}
         <Enter delay={160} style={{ gap: t.spacing[2] }}>
           <SectionLabel>Preferences</SectionLabel>
           <Box
@@ -349,6 +352,10 @@ export default function ProfileScreen() {
             radius="lg"
             style={{ overflow: "hidden" }}
           >
+            <View style={{ padding: t.spacing[4] }}>
+              <AppearanceControl />
+            </View>
+            <Divider />
             <SettingRow
               ios="globe"
               lucide="Landmark"
@@ -439,37 +446,6 @@ function SectionLabel({ children }: { children: string }) {
   );
 }
 
-function TintedGlyph({
-  ios,
-  lucide,
-  tint,
-}: {
-  ios: string;
-  lucide: string;
-  tint: ColorRole;
-}) {
-  const t = useTheme();
-  return (
-    <View
-      style={{
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        backgroundColor: `${t.colors[tint]}1F`,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <PlatformIcon
-        ios={ios}
-        lucide={lucide as never}
-        size={19}
-        color={t.colors[tint]}
-      />
-    </View>
-  );
-}
-
 /** Generic settings row: tinted glyph, label, value/badge, chevron. */
 function SettingRow({
   ios,
@@ -481,7 +457,7 @@ function SettingRow({
   onPress,
 }: {
   ios: string;
-  lucide: string;
+  lucide: LucideIconName;
   tint: ColorRole;
   label: string;
   value?: string;

@@ -30,6 +30,15 @@ Both `light` and `dark` ship on every surface, driven by `useColorScheme` via
 between schemes; only values do. Never reference a raw hex in a component —
 go through `useTheme().colors`.
 
+Above that sits one preference: `system · light · dark`. `system` is the
+default and follows the OS; the two pins override it for the app alone, which
+is the only thing a preference is for. It is stored on device synchronously so
+the first frame is already correct (no parchment flash on a pinned dark),
+collapsed to a scheme in `resolveScheme`, and set from Profile → Preferences →
+Appearance. `useTheme()` exposes both `preference` (what was chosen) and
+`scheme` (what it resolves to); every visual decision reads `scheme`, and no
+component branches on both.
+
 ## Palette (semantic, not literal)
 
 Light base is a very slightly warm parchment (`#F4F2EE`) against a deep
@@ -190,6 +199,8 @@ src/theme/
   elevation.ts     L0-L4 recipes per scheme
   motion.ts        springs, durations, easings
   fonts.ts         useLenvyFonts() hook
+  preference.ts    system/light/dark preference + resolveScheme()
+  webScheme.ts     writes the resolved scheme onto <html data-theme> on web
   ThemeProvider.tsx  useTheme() context + provider
   index.ts         barrel
 ```

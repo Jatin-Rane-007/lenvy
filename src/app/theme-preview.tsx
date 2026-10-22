@@ -8,6 +8,7 @@ import {
   Chip,
   Divider,
   IconButton,
+  Screen,
   Text,
 } from '@components/primitives';
 import { useTheme } from '@/theme';
@@ -19,6 +20,14 @@ import { useTheme } from '@/theme';
  * have replaced the need for it.
  */
 export default function ThemePreview() {
+  return (
+    <Screen edges={['top']}>
+      <Tour />
+    </Screen>
+  );
+}
+
+function Tour() {
   const t = useTheme();
 
   return (
@@ -252,7 +261,7 @@ function Header() {
         Every number has a purpose.
       </Text>
       <Text variant="caption" tone="subtle">
-        Current scheme: {t.scheme} · toggle via OS appearance
+        Current scheme: {t.scheme}
       </Text>
     </Box>
   );

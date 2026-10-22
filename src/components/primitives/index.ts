@@ -7,3 +7,4 @@ export { Chip, type ChipProps, type ChipVariant } from './Chip';
 export { Divider, type DividerProps } from './Divider';
 export { Badge, type BadgeProps, type BadgeSize, type BadgeTone } from './Badge';
 export { Avatar, type AvatarProps, type AvatarSize } from './Avatar';
+export { TintedGlyph, type TintedGlyphProps } from './TintedGlyph';
