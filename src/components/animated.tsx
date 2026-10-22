@@ -59,17 +59,31 @@ export function Enter({
 /**
  * Pressable with the DESIGN.md press dip — 0.94 while held. Uses Pressable's
  * `pressed` callback (React-Compiler-safe, same contract as Button) instead
- * of mutating a shared value from an event handler.
+ * of mutating a shared value from an event handler. An optional `onLongPress`
+ * turns a row into a tap-to-open / hold-to-manage affordance.
  */
 export function Dip({
   onPress,
+  onLongPress,
+  accessibilityLabel,
+  accessibilityHint,
   children,
   style,
-}: PropsWithChildren<{ onPress?: () => void; style?: ViewStyle }>) {
+}: PropsWithChildren<{
+  onPress?: () => void;
+  onLongPress?: () => void;
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
+  style?: ViewStyle;
+}>) {
   return (
     <Pressable
       accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel}
+      accessibilityHint={accessibilityHint}
       onPress={onPress}
+      onLongPress={onLongPress}
+      delayLongPress={450}
       style={({ pressed }) => [
         style,
         pressed && { transform: [{ scale: 0.94 }], opacity: 0.92 },
@@ -111,6 +125,36 @@ export function Float({
 
   const animated = useAnimatedStyle(() => ({
     transform: [{ translateY: y.value }],
+  }));
+
+  return <Animated.View style={animated}>{children}</Animated.View>;
+}
+
+/**
+ * The AI orb breath — DESIGN.md signature moment 3: scale 0.98 ↔ 1.02 on a
+ * 2.4 s ease-in-out loop. Reduce-motion collapses it to a static ring.
+ */
+export function Pulse({ children }: PropsWithChildren) {
+  const p = useSharedValue(0);
+  const reduce = useReduceMotion();
+
+  useEffect(() => {
+    if (reduce) {
+      p.value = 0;
+      return;
+    }
+    p.value = withRepeat(
+      withSequence(
+        withTiming(1, { duration: 1200, easing: Easing.inOut(Easing.ease) }),
+        withTiming(0, { duration: 1200, easing: Easing.inOut(Easing.ease) }),
+      ),
+      -1,
+      false,
+    );
+  }, [p, reduce]);
+
+  const animated = useAnimatedStyle(() => ({
+    transform: [{ scale: 0.98 + p.value * 0.04 }],
   }));
 
   return <Animated.View style={animated}>{children}</Animated.View>;

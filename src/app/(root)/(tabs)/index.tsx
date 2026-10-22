@@ -293,7 +293,7 @@ export default function HomeScreen() {
               hint="Snap & extract"
               tint="info"
               ai
-              onPress={() => router.push("/add")}
+              onPress={() => router.push("/add?action=scan")}
             />
             <CaptureCard
               iosIcon="mic"
@@ -302,7 +302,7 @@ export default function HomeScreen() {
               hint="Just say it"
               tint="caution"
               ai
-              onPress={() => router.push("/add")}
+              onPress={() => router.push("/add?action=voice")}
             />
             <CaptureCard
               iosIcon="keyboard"

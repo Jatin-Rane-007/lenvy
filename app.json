@@ -41,7 +41,26 @@
         }
       ],
       "expo-secure-store",
-      "expo-font"
+      "expo-font",
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "Lenvy uses the camera to scan receipts.",
+          "photosPermission": "Lenvy reads receipt photos from your library to log a transaction."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Lenvy uses the camera to scan receipts."
+        }
+      ],
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Lenvy records your voice note and turns it into a transaction draft."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

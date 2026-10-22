@@ -23,6 +23,7 @@ import {
   Keyboard,
   Landmark,
   Laptop,
+  LogOut,
   Mic,
   Package,
   PieChart,
@@ -105,6 +106,7 @@ const lucideIcons = {
   Laptop,
   Building,
   Gift,
+  LogOut,
 } satisfies Record<string, LucideIcon>;
 
 export type LucideIconName = keyof typeof lucideIcons;

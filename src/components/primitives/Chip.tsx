@@ -1,4 +1,5 @@
 import { Pressable, StyleSheet, type ViewStyle } from 'react-native';
+import type { ReactNode } from 'react';
 
 import { useTheme } from '@/theme';
 import { Text } from './Text';
@@ -11,11 +12,13 @@ export type ChipProps = {
   onPress?: () => void;
   /** For category chips — pass one of the theme category swatches (hex). */
   swatch?: string;
+  /** Optional leading glyph node (e.g. a PlatformIcon) rendered before the label. */
+  icon?: ReactNode;
   variant?: ChipVariant;
   style?: ViewStyle;
 };
 
-export function Chip({ label, selected, onPress, swatch, variant = 'filter', style }: ChipProps) {
+export function Chip({ label, selected, onPress, swatch, icon, variant = 'filter', style }: ChipProps) {
   const t = useTheme();
 
   const bg = selected
@@ -54,6 +57,7 @@ export function Chip({ label, selected, onPress, swatch, variant = 'filter', sty
         style,
       ]}
     >
+      {icon ? icon : null}
       <Text variant="caption" tone={selected ? 'ink' : 'muted'} style={{ color: fg }}>
         {label}
       </Text>
@@ -67,6 +71,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    gap: 6,
     minHeight: 30,
   },
 });

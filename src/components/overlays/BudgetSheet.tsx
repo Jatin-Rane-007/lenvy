@@ -65,9 +65,13 @@ export function BudgetSheet({
         onPress={onClose}
         style={{ flex: 1, backgroundColor: t.colors.overlay }}
       >
+        {/* adjustResize never fires inside a Modal window, so the avoiding view
+            has to do the lifting itself: `padding` on iOS, `height` on Android,
+            with the sheet pinned to the bottom via flex-end (an absolutely
+            positioned child ignores the added padding in Yoga). */}
         <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : undefined}
-          style={{ flex: 1 }}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={{ flex: 1, justifyContent: "flex-end" }}
         >
           <Box
             surface="surfaceRaised"
@@ -76,10 +80,6 @@ export function BudgetSheet({
             gap={t.spacing[4]}
             onStartShouldSetResponder={() => true}
             style={{
-              position: "absolute",
-              left: 0,
-              right: 0,
-              bottom: 0,
               paddingBottom: t.spacing[5] + Math.max(insets.bottom, 12),
               borderTopLeftRadius: t.radii.xl,
               borderTopRightRadius: t.radii.xl,

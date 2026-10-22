@@ -21,5 +21,9 @@
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     "nativewind-env.d.ts"
+  ],
+  "exclude": [
+    // Loose reference screen from another project — not part of this app.
+    "add-transaction.tsx"
   ]
 }
